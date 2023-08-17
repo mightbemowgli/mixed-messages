@@ -2,11 +2,14 @@
 const getRandomNumber = num => {
     return Math.floor(Math.random() * num);
 }
+
 //object with class, alignment, race
 const characterCombo = {
-    axis: ['Lawful', 'Neutral', 'Chaotic'],
-    alignment: ['Good', 'Neutral', 'Evil'],
-    race: ['Dragonborn', 'Dwarf', 'Elf', 'Gnome', 'Half-elf', 'Halfling',
+    alignment: ['Lawful Good', 'Neutral Good', 'Chaotic Good',
+                'Lawful Neutral', 'True Neutral', 'Chaotic Neutral',
+                'Lawful Evil', 'Neutral Evil', 'Chaotic Evil'],
+    race: ['Dragonborn', 'Dwarf', 'Elf', 
+           'Gnome', 'Half-elf', 'Halfling',
            'Half-orc', 'Human', 'Tiefling'],
     class: ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk',
             'Paladin', 'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard']
@@ -16,6 +19,25 @@ const characterCombo = {
 let newCharacter = [];
 
 //iterate over the object
+for (const prop in characterCombo) {
+    let propIndex = getRandomNumber(characterCombo[prop].length);
 
-//user object properties to customize message in the array
+//use object properties to customize message in the array
 //'You should roll a ${alignment} ${race} ${class}'
+    switch(prop) {
+        case 'alignment': 
+            newCharacter.push(`Your character should have a ${characterCombo[prop][propIndex]} alignment.`)
+            break;
+        case 'race':
+            newCharacter.push(`Your character should be a(n) ${characterCombo[prop][propIndex]}.`)
+            break;
+        case 'class':
+            newCharacter.push(`You should play as a ${characterCombo[prop][propIndex]}`)
+            break;
+        default: 
+            newCharacter.push('I don\'t know what you should play, you decide!')
+    }
+}
+
+console.log(newCharacter);
+
