@@ -26,13 +26,13 @@ for (const prop in characterCombo) {
 //'You should roll a ${alignment} ${race} ${class}'
     switch(prop) {
         case 'alignment': 
-            newCharacter.push(`Your character should have a ${characterCombo[prop][propIndex]} alignment.`)
+            newCharacter.push(`${characterCombo[prop][propIndex]}`)
             break;
         case 'race':
-            newCharacter.push(`Your character should be a(n) ${characterCombo[prop][propIndex]}.`)
+            newCharacter.push(`${characterCombo[prop][propIndex]}`)
             break;
         case 'class':
-            newCharacter.push(`You should play as a ${characterCombo[prop][propIndex]}`)
+            newCharacter.push(`${characterCombo[prop][propIndex]}`)
             break;
         default: 
             newCharacter.push('I don\'t know what you should play, you decide!')
@@ -40,8 +40,8 @@ for (const prop in characterCombo) {
 }
 
 const formatArray = charInfo => {
-    const formatted = newCharacter.join('\n');
-    console.log(formatted);
+    const formatted = newCharacter.join(' ');
+    console.log(`You should play as a ${formatted}!`);
 }
 
 formatArray(newCharacter);
