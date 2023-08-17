@@ -39,5 +39,10 @@ for (const prop in characterCombo) {
     }
 }
 
-console.log(newCharacter);
+const formatArray = charInfo => {
+    const formatted = newCharacter.join('\n');
+    console.log(formatted);
+}
+
+formatArray(newCharacter);
 
