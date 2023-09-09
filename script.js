@@ -1,3 +1,7 @@
+const mainContainer = document.getElementById('main-container');
+const textContainer = document.getElementById('text-container');
+const rollBtn = document.getElementById('roll-btn');
+
 //write function to get a number between 0 - Num
 const getRandomNumber = num => {
     return Math.floor(Math.random() * num);
@@ -11,38 +15,38 @@ const characterCombo = {
     race: ['Dragonborn', 'Dwarf', 'Elf', 
            'Gnome', 'Half-elf', 'Halfling',
            'Half-orc', 'Human', 'Tiefling'],
-    class: ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk',
+    class: ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Artificer',
             'Paladin', 'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard']
 }
 
 //store character info in an array
 let newCharacter = [];
 
-//iterate over the object
-for (const prop in characterCombo) {
-    let propIndex = getRandomNumber(characterCombo[prop].length);
-
-//use object properties to customize message in the array
-//'You should roll a ${alignment} ${race} ${class}'
-    switch(prop) {
-        case 'alignment': 
-            newCharacter.push(`${characterCombo[prop][propIndex]}`)
-            break;
-        case 'race':
-            newCharacter.push(`${characterCombo[prop][propIndex]}`)
-            break;
-        case 'class':
-            newCharacter.push(`${characterCombo[prop][propIndex]}`)
-            break;
-        default: 
-            newCharacter.push('I don\'t know what you should play, you decide!')
+const rollCharacter = () => {
+    for (const prop in characterCombo) {
+        let propIndex = getRandomNumber(characterCombo[prop].length);
+        switch(prop) {
+            case 'alignment': 
+                newCharacter.push(`${characterCombo[prop][propIndex]}`)
+                break;
+            case 'race':
+                newCharacter.push(`${characterCombo[prop][propIndex]}`)
+                break;
+            case 'class':
+                newCharacter.push(`${characterCombo[prop][propIndex]}`)
+                break;
+        }
     }
 }
 
-const formatArray = charInfo => {
+const formatArray = () => {
+    rollCharacter();
     const formatted = newCharacter.join(' ');
-    console.log(`You should play as a ${formatted}!`);
+    textContainer.textContent = `You should play as a ${formatted}!`;
 }
 
-formatArray(newCharacter);
+rollBtn.onclick = function() {
+    formatArray(newCharacter);
+    newCharacter = [];
+}
 
